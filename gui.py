@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow,
                              QWidget, QVBoxLayout, QToolButton, QLabel)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize, Qt
-import os, sys
+import os
+import sys
 import json
 from datetime import datetime
 
@@ -20,11 +21,13 @@ def cmd_path(cmd_name):
     else:
         return os.path.join(sys.path[0], 'cmd', f'{cmd_name}.cmd')
 
+
 def data_path(name):
     if getattr(sys, 'frozen', False):
         return os.path.join(sys._MEIPASS, 'data', name)
     else:
         return os.path.join(sys.path[0], 'data', name)
+
 
 def get_time():
     with open(f'{data_path('tracker')}.json', 'r') as json_data:
@@ -33,6 +36,7 @@ def get_time():
         return f'Time left : {trackerhis[0]["Time_left"]}'
     else:
         return "Timer not started yet"
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -46,7 +50,7 @@ class MainWindow(QMainWindow):
 
         central__widgit = QWidget()
         self.setCentralWidget(central__widgit)
-        
+
         label = QLabel()
         button1 = QToolButton()
         button2 = QToolButton()
