@@ -7,6 +7,7 @@ import trackertest
 import shutdown_game
 import regex
 import time
+import pyuac
 
 
 logging.basicConfig(filename='test.log', level=logging.WARNING)
@@ -69,4 +70,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if not pyuac.isUserAdmin():
+        print("Re-launching with admin privileges...")
+        pyuac.runAsAdmin()
+    else:
+        main()
