@@ -6,13 +6,13 @@ trackerhis = []
 
 # print(datetime.now().date())
 
-with open('tracker.json', 'r') as json_data:
+with open('./data/tracker.json', 'r') as json_data:
     trackerhis = (json.load(json_data))
 
 
 def timer(initial):
     # print(initial)
-    time.sleep(60)
+    time.sleep(1)
     initial -= 1
     if initial <= -1:
         raise Exception("Times UP, TIME TO LEAVE!")
@@ -20,8 +20,8 @@ def timer(initial):
         for x in trackerhis:
             if x['Current_date'] == f'{datetime.now().date()}':
                 x['Time_left'] = initial
-                with open('tracker.json', 'w') as json_date:
-                    json.dump(trackerhis, json_date)
+                with open('./data/tracker.json', 'w') as json_date:
+                    json.dump(trackerhis, json_date, indent=4)
                 break
             else:
                 continue
@@ -38,8 +38,8 @@ def start_tracking():
             "Current_date": f'{datetime.now().date()}',
             "Time_left": 120
         })
-        with open('tracker.json', 'w') as json_date:
-            json.dump(trackerhis, json_date)
+        with open('./data/tracker.json', 'w') as json_date:
+            json.dump(trackerhis, json_date, indent=4)
         print(timer(trackerhis[0]["Time_left"]))
         return "New day!, Timer created"
 

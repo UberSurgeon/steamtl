@@ -1,0 +1,1 @@
+python -m PyInstaller --onefile -w "gui.py" --add-data "img;img" --add-data "cmd;cmd" --add-data "data;data"
